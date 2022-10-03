@@ -26,14 +26,14 @@ function decrypt(ciphertext, password) {
 
     console.log(ciphertextBytes)
 
-    // ------------ perform decryption ------------
+
     const plaintextBytes = preDecryption(ciphertextBytes, key, counterBlock);
     console.log(plaintextBytes)
 
-    // convert byte array to (utf-8) plaintext string
+    
     const plaintextUtf8 = plaintextBytes.map(i => String.fromCharCode(i)).join('');
     console.log(plaintextUtf8)
-    // decode from UTF8 back to Unicode multi-byte chars
+    
     const plaintext = utf8Decode(plaintextUtf8);
 
     return plaintext;
@@ -61,7 +61,7 @@ function preDecryption(ciphertext, key, counterBlock) {
             plaintext[b*blockSize + i] = cipherCntr[i] ^ ciphertext[b*blockSize + i];
         }
 
-        // increment counter block (counter in 2nd 8 bytes of counter block, big-endian)
+        
         counterBlock[blockSize-1]++;
         // and propagate carry digits
         for (let i=blockSize-1; i>=8; i--) {
